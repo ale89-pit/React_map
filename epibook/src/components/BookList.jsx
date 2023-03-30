@@ -10,22 +10,25 @@ import Button from "react-bootstrap/esm/Button";
 class BookList extends Component{
     state = {
         serchString : '',
+        bookArray : this.props.book
 
     }
-    bookArray = this.props.book
-//  filterBookList = ()=>{
-//    let bookArray = this.bookArray.filter(book =>{
-//     return (book.title.toLowerCase().includes(this.state.serchString.toLocaleLowerCase()))
-//    })   
-// console.log(arraySerch)
+ filterBookList = ()=>{
+   return this.props.book.filter(book =>
+     (book.title.toLowerCase().includes(this.state.serchString.toLocaleLowerCase()))
+   )   
 
-// }
+
+}
   
   render(){
         return(
           <>  
             <Form onSubmit={(e)=>{
         e.preventDefault()
+        this.setState({
+          bookArray : this.filterBookList()
+        })
         
       }}>
       <Form.Group className="mb-3" >
@@ -45,7 +48,7 @@ class BookList extends Component{
       </Button>
     </Form>
 
-         { this.bookArray.map(book =>{
+         { this.state.bookArray.map(book =>{
                 return(
                      <SingleBook book={book}/>
                 )

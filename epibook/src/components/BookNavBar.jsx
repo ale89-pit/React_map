@@ -13,7 +13,7 @@ function BookNavBar(){
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">About</Nav.Link>
             <Nav.Link href="#link">Browser</Nav.Link>
-            <Nav.Link href="#link">Browser</Nav.Link>
+            
             
               
             

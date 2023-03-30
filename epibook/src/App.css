@@ -47,5 +47,11 @@ body {
 }
 
 .card {
-  max-width: 280px
+  max-width: 200px;
+
+}
+
+.card img {
+
+  aspect-ratio: 2/3;
 }

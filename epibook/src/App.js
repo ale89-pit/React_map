@@ -17,7 +17,7 @@ function App() {
       <Welcome />
       <Container>
         <Row>
-          <BookList book={horror} />
+          <BookList book={fantasy} />
         </Row>
       </Container>
       <Footer fixed="bottom" />

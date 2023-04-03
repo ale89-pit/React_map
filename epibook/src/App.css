@@ -55,3 +55,7 @@ body {
 
   aspect-ratio: 2/3;
 }
+
+.border {
+  border: 2px solid red;
+}

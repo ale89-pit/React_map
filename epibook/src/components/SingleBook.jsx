@@ -21,8 +21,8 @@ class SingleBook extends Component {
     render() {
         let cardClass = this.state.isSelected ? "redBorder" : "";
         return (
-            <Col xs={6} lg={4} xl={3} className='position-relative'>
-                <Card onClick={this.handleClick} className={cardClass}>
+            <Col xs={6} lg={4} xl={3} className='position-relative '>
+                <Card onClick={this.handleClick} className={`mb-2  ${cardClass} overflow-scroll scrollbar`}>
 
                     <Card.Img variant="top" src={this.props.book.img} />
                     <Card.Body>

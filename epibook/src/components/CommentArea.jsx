@@ -40,7 +40,7 @@ class CommentArea extends Component {
     }
     render() {
         return (
-            <div>
+            <div className=" position-absolute top-0 start-0 backwhite w-100">
                 <CommentList comment={this.state.review} />
                 <NewComment id={this.props.elementId} />
             </div>

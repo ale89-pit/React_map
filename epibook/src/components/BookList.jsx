@@ -13,7 +13,7 @@ import Col from "react-bootstrap/esm/Col";
 
 
 
-const BookList = (props) =>{
+const BookList = (props) => {
   // state = {
   //   serchString: '',
   //   bookArray: this.props.book,
@@ -21,10 +21,10 @@ const BookList = (props) =>{
 
   // }
   const [serchString, setSearchString] = useState("")
-  const [bookArray , setBookArray] = useState([props.book])
+  const [bookArray, setBookArray] = useState(props.book)
   const [selectedBook, setSelectedBook] = useState(null)
 
-
+  console.log(bookArray)
   const changeSelectedBook = (asin) => {
     setSelectedBook(asin)
     // this.setState({
@@ -40,55 +40,55 @@ const BookList = (props) =>{
 
   }
 
-  
-    return (
-      <Row>
-        <Col md={8}>
-          <Row>
-            <Col>
-              <Form onSubmit={(e) => {
-                e.preventDefault()
-                setBookArray(filterBookList())
-                // this.setState({
-                //   bookArray: this.filterBookList()
-                // })
 
-              }}>
-                <Form.Group className="mb-3" >
-                  <Form.Label>Trova libro</Form.Label>
-                  <Form.Control type="text" placeholder="Trova il libro per te"
-                    value={serchString} onChange={(e) => {
-                      setSearchString(e.target.value)
-                      // this.setState({
-                      //   serchString: e.target.value
-                      // })
-                    }} />
+  return (
+    <Row>
+      <Col md={8}>
+        <Row>
+          <Col>
+            <Form onSubmit={(e) => {
+              e.preventDefault()
+              setBookArray(filterBookList())
+              // this.setState({
+              //   bookArray: this.filterBookList()
+              // })
 
-                </Form.Group>
+            }}>
+              <Form.Group className="mb-3" >
+                <Form.Label>Trova libro</Form.Label>
+                <Form.Control type="text" placeholder="Trova il libro per te"
+                  value={serchString} onChange={(e) => {
+                    setSearchString(e.target.value)
+                    // this.setState({
+                    //   serchString: e.target.value
+                    // })
+                  }} />
+
+              </Form.Group>
 
 
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Col>
-          </Row>
-          <Row>
-
-            {bookArray.map(onebook => {
-              return (
-                <Col xs={12} md={4} key={onebook.a}>
-                <SingleBook onebook={onebook} selectedBook={selectedBook} changeSelectedBook={changeSelectedBook} />
-                </Col>
-              )
-
-            })}
-          </Row>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
           </Col>
-          <CommentArea elementId={selectedBook} />
-      </Row>
-      )
-  
+        </Row>
+        <Row>
+
+          {bookArray.map(onebook => {
+            return (
+              <Col xs={12} md={4} key={onebook.a}>
+                <SingleBook onebook={onebook} selectedBook={selectedBook} changeSelectedBook={changeSelectedBook} />
+              </Col>
+            )
+
+          })}
+        </Row>
+      </Col>
+      <CommentArea elementId={selectedBook} />
+    </Row>
+  )
+
 }
 
 export default BookList

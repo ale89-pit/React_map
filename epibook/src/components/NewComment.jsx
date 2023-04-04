@@ -10,13 +10,13 @@ const NewComment = (props) => {
     //         elementId: this.props.id
     //     }
     // }
-    const [review , setReview] = useState({
-        comment : '',
+    const [review, setReview] = useState({
+        comment: '',
         rate: '',
-        elementId :props.id
+        elementId: props.id
     })
-    
 
+    console.log(review)
 
     const sendComment = async () => {
         try {
@@ -48,39 +48,40 @@ const NewComment = (props) => {
         }
 
     }
-    useEffect(()=>{
+    useEffect(() => {
 
         sendComment(review)
-    
-    },[])
-    
-        return (
-            <Form onSubmit={(e) => {
-                e.preventDefault()
-                sendComment(review)
-            }}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Select aria-label="Default select example"
-                        value={review.rate} onChange={(e) => 
-                            setReview({...review,
-                                rate : e.target.value
-                            })
-                             }>
-                       
-                       
-                   
-                        <option>Open this select menu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={review.comment} onChange={(e) => 
-                    
+
+    }, [review.elementId])
+
+    return (
+        <Form onSubmit={(e) => {
+            e.preventDefault()
+            sendComment(review)
+        }}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Select aria-label="Default select example"
+                    value={review.rate} onChange={(e) =>
+                        setReview({
+                            ...review,
+                            rate: e.target.value
+                        })
+                    }>
+
+
+
+                    <option>Open this select menu</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Example textarea</Form.Label>
+                <Form.Control as="textarea" rows={3} value={review.comment} onChange={(e) =>
+
                     // this.setState({
                     //     review: {
                     //         ...this.state.review,
@@ -88,17 +89,18 @@ const NewComment = (props) => {
                     //     }
 
                     // })
-                    setReview({...review,
-                        comment : e.target.value
+                    setReview({
+                        ...review,
+                        comment: e.target.value
                     })
-                    } />
-                </Form.Group>
-                <Form.Group>
-                    <Button variant="primary" type="submit">Send</Button>
-                </Form.Group>
-            </Form>
-        )
-    
+                } />
+            </Form.Group>
+            <Form.Group>
+                <Button variant="primary" type="submit">Send</Button>
+            </Form.Group>
+        </Form>
+    )
+
 }
 
 export default NewComment

@@ -24,7 +24,7 @@ const BookList = (props) => {
   const [bookArray, setBookArray] = useState(props.book)
   const [selectedBook, setSelectedBook] = useState(null)
 
-  console.log(bookArray)
+
   const changeSelectedBook = (asin) => {
     setSelectedBook(asin)
     // this.setState({

@@ -13,10 +13,10 @@ const NewComment = (props) => {
     const [review, setReview] = useState({
         comment: '',
         rate: '',
-        elementId: props.id
+        elementId: props.id,
     })
 
-    console.log(review)
+
 
     const sendComment = async () => {
         try {
@@ -35,11 +35,11 @@ const NewComment = (props) => {
             )
             if (response.ok) {
                 alert('Recensione inviata correttamente')
-                // setReview({
-                //     comment : '',
-                //     rate: '',
-                //     elementId :props.id
-                // })
+                setReview({
+                    comment: '',
+                    rate: '',
+                    elementId: props.id,
+                })
             } else {
                 console.log('Fetch fallita')
             }
@@ -48,11 +48,7 @@ const NewComment = (props) => {
         }
 
     }
-    useEffect(() => {
 
-        sendComment(review)
-
-    }, [review.elementId])
 
     return (
         <Form onSubmit={(e) => {

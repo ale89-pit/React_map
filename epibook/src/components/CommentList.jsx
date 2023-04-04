@@ -5,7 +5,7 @@ class CommentList extends Component {
 
     render() {
         return (
-            this.props.comment.map((com) => <SingleComment key={com.asin} id={com._id} comment={com.comment} rate={com.rate} />)
+            this.props.comment.slice(0, 5).map((com) => <SingleComment key={com._id} id={com._id} comment={com.comment} rate={com.rate} />)
         )
     }
 }

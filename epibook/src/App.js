@@ -21,6 +21,6 @@ function App() {
       <Footer fixed="bottom" />
     </div>
   )};
-}
+
 
 export default App;

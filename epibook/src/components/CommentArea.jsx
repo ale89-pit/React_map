@@ -27,7 +27,7 @@ const CommentArea = (props) => {
             )
             if (response.ok) {
                 let data = await response.json()
-                console.log(data)
+
                 setReview(data)
                 // this.setState({ review: data })
             } else {
@@ -52,8 +52,10 @@ const CommentArea = (props) => {
 
     return (
         <Col md={4} >
-            <CommentList comment={review} />
-            <NewComment id={props.elementId} />
+            <div className="sticky-top">
+                <CommentList comment={review} />
+                <NewComment id={props.elementId} />
+            </div>
         </Col>
     )
 

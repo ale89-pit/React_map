@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import BookList from "./components/BookList";
 import horror from "./data/horror.json";
 import fantasy from "./data/fantasy.json";
-
+  
 function App() {
   return (
     <div className="App h-100">
@@ -20,7 +20,7 @@ function App() {
       </Container>
       <Footer fixed="bottom" />
     </div>
-  );
+  )};
 }
 
 export default App;

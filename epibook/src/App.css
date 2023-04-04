@@ -52,16 +52,17 @@ body {
 }
 
 .card img {
-width: 100%;
+  width: 100%;
   aspect-ratio: 2/3;
 }
 
 .redBorder {
   border: 2px solid red !important;
-  
+
 }
-.backwhite{
-background-color: white;
+
+.backwhite {
+  background-color: white;
 }
 
 ::-webkit-scrollbar {

@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import NewComment from "./NewComment";
 import CommentList from "./CommentList"
+import Col from "react-bootstrap/Col"
 
 class CommentArea extends Component {
     state = {
@@ -34,16 +35,18 @@ class CommentArea extends Component {
 
     }
 
-    componentDidMount() {
+    componentDidUpdate(prevProps) {
+       if(prevProps.elementId !== this.props.elementId){
         this.getComment()
         console.log(this.state.review)
+       } 
     }
     render() {
         return (
-            <div className=" position-absolute top-0 start-0 backwhite w-100">
+            <Col md={4} >
                 <CommentList comment={this.state.review} />
                 <NewComment id={this.props.elementId} />
-            </div>
+            </Col>
         )
     }
 }

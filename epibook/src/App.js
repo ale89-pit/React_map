@@ -15,10 +15,8 @@ function App() {
     <div className="App h-100">
       <BookNavBar />
       <Welcome />
-      <Container>
-        <Row>
-          <BookList book={fantasy} />
-        </Row>
+      <Container fluid>
+        <BookList book={fantasy} />
       </Container>
       <Footer fixed="bottom" />
     </div>

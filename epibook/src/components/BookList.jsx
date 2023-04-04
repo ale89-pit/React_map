@@ -24,7 +24,7 @@ class BookList extends Component {
   render() {
     return (
       <>
-        <Form onSubmit={(e) => {
+        <Form className="mb-3" onSubmit={(e) => {
           e.preventDefault()
           this.setState({
             bookArray: this.filterBookList()

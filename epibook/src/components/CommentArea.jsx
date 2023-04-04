@@ -43,6 +43,7 @@ const CommentArea = (props) => {
         getComment()
 
     }, [props.elementId])
+    console.log(review.length)
     // componentDidUpdate(prevProps) {
     //    if(prevProps.elementId !== this.props.elementId){
     //     this.getComment()

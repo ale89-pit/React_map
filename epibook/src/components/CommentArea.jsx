@@ -1,20 +1,23 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import NewComment from "./NewComment";
 import CommentList from "./CommentList"
 import Col from "react-bootstrap/Col"
 
-class CommentArea extends Component {
-    state = {
+const CommentArea = (props) =>{
+    // state = {
 
-        review: []
+    //     review: []
 
 
-    }
-    getComment = async () => {
+    // }
+    const [review , setReview] = useState([])
+    
+
+   const getComment = async () => {
         try {
-            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${this.props.elementId}`, {
+            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${props.elementId}`, {
 
                 headers: {
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJiMDk1MzBlNzg3MDAwMTRkODkxYzAiLCJpYXQiOjE2ODA1NDIwMzYsImV4cCI6MTY4MTc1MTYzNn0.76zUkksEzzVTHBeK-tBeJC58on0slRYzjGSC1e-MG8c"
@@ -25,7 +28,8 @@ class CommentArea extends Component {
             if (response.ok) {
                 let data = await response.json()
                 console.log(data)
-                this.setState({ review: data })
+                setReview(data)
+                // this.setState({ review: data })
             } else {
                 console.log('Fetch fallita')
             }
@@ -34,21 +38,25 @@ class CommentArea extends Component {
         }
 
     }
+useEffect(()=>{
 
-    componentDidUpdate(prevProps) {
-       if(prevProps.elementId !== this.props.elementId){
-        this.getComment()
-        console.log(this.state.review)
-       } 
-    }
-    render() {
+    getComment()
+
+},[props.elementId])
+    // componentDidUpdate(prevProps) {
+    //    if(prevProps.elementId !== this.props.elementId){
+    //     this.getComment()
+    //     console.log(this.state.review)
+    //    } 
+    // }
+    
         return (
             <Col md={4} >
-                <CommentList comment={this.state.review} />
-                <NewComment id={this.props.elementId} />
+                <CommentList comment={review} />
+                <NewComment id={props.elementId} />
             </Col>
         )
-    }
+    
 }
 
 export default CommentArea

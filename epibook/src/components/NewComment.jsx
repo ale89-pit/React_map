@@ -1,20 +1,28 @@
-import { Component } from "react"
+import { Component, useState, useEffect } from "react"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-class NewComment extends Component {
-    state = {
-        review: {
-            rate: '',
-            comment: '',
-            elementId: this.props.id
-        }
-    }
-    sendComment = async () => {
+const NewComment = (props) => {
+    // state = {
+    //     review: {
+    //         rate: '',
+    //         comment: '',
+    //         elementId: this.props.id
+    //     }
+    // }
+    const [review , setReview] = useState({
+        comment : '',
+        rate: '',
+        elementId :props.id
+    })
+    
+
+
+    const sendComment = async () => {
         try {
-            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/`, {
+            let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments`, {
                 method: 'POST',
-                body: JSON.stringify(this.state.review),
+                body: JSON.stringify(review),
 
                 headers: {
 
@@ -27,6 +35,11 @@ class NewComment extends Component {
             )
             if (response.ok) {
                 alert('Recensione inviata correttamente')
+                // setReview({
+                //     comment : '',
+                //     rate: '',
+                //     elementId :props.id
+                // })
             } else {
                 console.log('Fetch fallita')
             }
@@ -35,20 +48,27 @@ class NewComment extends Component {
         }
 
     }
-    render() {
+    useEffect(()=>{
+
+        sendComment(review)
+    
+    },[])
+    
         return (
             <Form onSubmit={(e) => {
                 e.preventDefault()
-                this.sendComment()
+                sendComment(review)
             }}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Select aria-label="Default select example"
-                        value={this.state.review.rate} onChange={(e) => this.setState({
-                            review: {
-                                ...this.state.review,
-                                rate: e.target.value,
-                            }
-                        })}>
+                        value={review.rate} onChange={(e) => 
+                            setReview({...review,
+                                rate : e.target.value
+                            })
+                             }>
+                       
+                       
+                   
                         <option>Open this select menu</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -59,20 +79,26 @@ class NewComment extends Component {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={this.state.review.comment} onChange={(e) => this.setState({
-                        review: {
-                            ...this.state.review,
-                            comment: e.target.value
-                        }
+                    <Form.Control as="textarea" rows={3} value={review.comment} onChange={(e) => 
+                    
+                    // this.setState({
+                    //     review: {
+                    //         ...this.state.review,
+                    //         comment: e.target.value
+                    //     }
 
-                    })} />
+                    // })
+                    setReview({...review,
+                        comment : e.target.value
+                    })
+                    } />
                 </Form.Group>
                 <Form.Group>
-                    <Button variant="primary" onClick={this.sendComment}>Send</Button>
+                    <Button variant="primary" type="submit">Send</Button>
                 </Form.Group>
             </Form>
         )
-    }
+    
 }
 
 export default NewComment

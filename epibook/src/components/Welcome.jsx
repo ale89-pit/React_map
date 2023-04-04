@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Component } from "react";
+import Form from 'react-bootstrap/Form'
 
 
 
@@ -16,12 +18,22 @@ function Welcome() {
           Learn more
         </a>
       </p>
-
-
+      {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Select aria-label="Default select example"
+          value={this.} onChange={(e) => this.props.changeAppState.value}>
+          <option>Open this select menu</option>
+          <option value="1">horro</option>
+          <option value="2">fantasy</option>
+          <option value="3">romance</option>
+          <option value="4">scifi</option>
+          <option value="5">history</option>
+        </Form.Select>
+      </Form.Group> */}
     </div>
 
 
   )
+}
 }
 
 export default Welcome

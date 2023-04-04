@@ -5,17 +5,17 @@ import NewComment from "./NewComment";
 import CommentList from "./CommentList"
 import Col from "react-bootstrap/Col"
 
-const CommentArea = (props) =>{
+const CommentArea = (props) => {
     // state = {
 
     //     review: []
 
 
     // }
-    const [review , setReview] = useState([])
-    
+    const [review, setReview] = useState([])
 
-   const getComment = async () => {
+
+    const getComment = async () => {
         try {
             let response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${props.elementId}`, {
 
@@ -38,25 +38,25 @@ const CommentArea = (props) =>{
         }
 
     }
-useEffect(()=>{
+    useEffect(() => {
 
-    getComment()
+        getComment()
 
-},[props.elementId])
+    }, [props.elementId])
     // componentDidUpdate(prevProps) {
     //    if(prevProps.elementId !== this.props.elementId){
     //     this.getComment()
     //     console.log(this.state.review)
     //    } 
     // }
-    
-        return (
-            <Col md={4} >
-                <CommentList comment={review} />
-                <NewComment id={props.elementId} />
-            </Col>
-        )
-    
+
+    return (
+        <Col md={4} >
+            <CommentList comment={review} />
+            <NewComment id={props.elementId} />
+        </Col>
+    )
+
 }
 
 export default CommentArea

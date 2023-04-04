@@ -13,10 +13,13 @@ const NewComment = (props) => {
     const [review, setReview] = useState({
         comment: '',
         rate: '',
-        elementId: props.id,
+        elementId: `${props.id}`,
     })
 
-
+    useEffect(() => setReview({
+        ...review,
+        elementId: `${props.id}`
+    }), [review.elementId])
 
     const sendComment = async () => {
         try {
@@ -38,7 +41,7 @@ const NewComment = (props) => {
                 setReview({
                     comment: '',
                     rate: '',
-                    elementId: props.id,
+                    elementId: `${props.id}`,
                 })
             } else {
                 console.log('Fetch fallita')

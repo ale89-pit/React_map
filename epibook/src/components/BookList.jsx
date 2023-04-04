@@ -77,7 +77,7 @@ const BookList = (props) =>{
 
             {bookArray.map(onebook => {
               return (
-                <Col xs={12} md={4} key={onebook.a}>
+                <Col xs={12} md={4} key={onebook.asin}>
                 <SingleBook onebook={onebook} selectedBook={selectedBook} changeSelectedBook={changeSelectedBook} />
                 </Col>
               )

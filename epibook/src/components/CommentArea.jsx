@@ -42,7 +42,8 @@ useEffect(()=>{
 
     getComment()
 
-},[props.elementId])
+},[])
+
     // componentDidUpdate(prevProps) {
     //    if(prevProps.elementId !== this.props.elementId){
     //     this.getComment()

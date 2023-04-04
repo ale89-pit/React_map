@@ -48,11 +48,11 @@ const NewComment = (props) => {
         }
 
     }
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        sendComment(review)
+    //     sendComment(review)
     
-    },[])
+    // },[])
     
         return (
             <Form onSubmit={(e) => {

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import romance from '../data/romance.json'
 import fantasy from '../data/fantasy.json';
 import history from '../data/history.json';
@@ -10,29 +10,37 @@ import Button from "react-bootstrap/esm/Button";
 import CommentArea from "./CommentArea";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
-class BookList extends Component {
-  state = {
-    serchString: '',
-    bookArray: this.props.book,
-    selectedBook: null
 
+
+
+const BookList = (props) =>{
+  // state = {
+  //   serchString: '',
+  //   bookArray: this.props.book,
+  //   selectedBook: null
+
+  // }
+  const [serchString, setSearchString] = useState("")
+  const [bookArray , setBookArray] = useState([props.book])
+  const [selectedBook, setSelectedBook] = useState(null)
+
+
+  const changeSelectedBook = (asin) => {
+    setSelectedBook(asin)
+    // this.setState({
+    //   selectedBook: asin
+
+    // })
   }
-  changeSelectedBook = (asin) => {
-
-    this.setState({
-      selectedBook: asin
-
-    })
-  }
-  filterBookList = () => {
-    return this.props.book.filter(book =>
-      (book.title.toLowerCase().includes(this.state.serchString.toLowerCase()))
+  const filterBookList = () => {
+    return props.book.filter(book =>
+      (book.title.toLowerCase().includes(serchString.toLowerCase()))
     )
 
 
   }
 
-  render() {
+  
     return (
       <Row>
         <Col md={8}>
@@ -40,18 +48,20 @@ class BookList extends Component {
             <Col>
               <Form onSubmit={(e) => {
                 e.preventDefault()
-                this.setState({
-                  bookArray: this.filterBookList()
-                })
+                setBookArray(filterBookList())
+                // this.setState({
+                //   bookArray: this.filterBookList()
+                // })
 
               }}>
                 <Form.Group className="mb-3" >
                   <Form.Label>Trova libro</Form.Label>
                   <Form.Control type="text" placeholder="Trova il libro per te"
-                    value={this.state.serchString} onChange={(e) => {
-                      this.setState({
-                        serchString: e.target.value
-                      })
+                    value={serchString} onChange={(e) => {
+                      setSearchString(e.target.value)
+                      // this.setState({
+                      //   serchString: e.target.value
+                      // })
                     }} />
 
                 </Form.Group>
@@ -65,20 +75,20 @@ class BookList extends Component {
           </Row>
           <Row>
 
-            {this.state.bookArray.map(onebook => {
+            {bookArray.map(onebook => {
               return (
-                <Col xs={12} md={4} key={onebook.asin}>
-                <SingleBook onebook={onebook} selectedBook={this.state.selectedBook} changeSelectedBook={this.changeSelectedBook} />
+                <Col xs={12} md={4} key={onebook.a}>
+                <SingleBook onebook={onebook} selectedBook={selectedBook} changeSelectedBook={changeSelectedBook} />
                 </Col>
               )
 
             })}
           </Row>
           </Col>
-          <CommentArea elementId={this.state.selectedBook} />
+          <CommentArea elementId={selectedBook} />
       </Row>
       )
-  }
+  
 }
 
 export default BookList
